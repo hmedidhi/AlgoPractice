@@ -1,4 +1,4 @@
-package com.practice.algo.graphs;
+package com.practice.ds.graphs;
 
 import java.util.ArrayList;
 import java.util.HashMap;
