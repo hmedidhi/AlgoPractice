@@ -7,17 +7,23 @@ public class ThreeSum {
         List<List<Integer>> result = new LinkedList<>();
         Set<Integer> set = new HashSet<>();
         Set<String> dublicates = new HashSet<>();
+        Arrays.sort(nums);
         set.add(nums[0]);
         for (int i = 1; i < nums.length - 1; i++) {
-            if (set.contains(-1*(nums[i] + nums[i + 1]))) {
-                List<Integer> lst = new ArrayList<>();
-                lst.add(nums[i]);
-                lst.add(nums[i+1]);
-                lst.add(-1*(nums[i] + nums[i + 1]));
-                lst = lst.stream().sorted().toList();
-                if(dublicates.contains(lst.toString()))
-                    result.add(lst);
-                dublicates.add(lst.toString());
+            int j = i+1;
+            while(j<nums.length){
+                if (set.contains(-1*(nums[i] + nums[j]))) {
+                    List<Integer> lst = new ArrayList<>();
+                    lst.add(nums[i]);
+                    lst.add(nums[j]);
+                    lst.add(-1*(nums[i] + nums[j]));
+                    if(!dublicates.contains(lst.toString()))
+                        result.add(lst);
+                    dublicates.add(lst.toString());
+                }
+                j++;
+                while(j<nums.length&&nums[j-1]==nums[j])
+                    j++;
             }
             set.add(nums[i]);
         }
